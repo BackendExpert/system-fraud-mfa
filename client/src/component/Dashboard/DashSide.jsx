@@ -33,108 +33,19 @@ const DashSide = ({ closeSidebar }) => {
             name: "Dashboard",
             icon: <BiSolidDashboard />,
             link: "/dashboard",
-            roles: ["admin", "undergraduate", "intern", "ase", "se"],
+            roles: ["admin", "user", "developer"],
         },
 
         {
-            name: "Projects",
+            name: "Audit logs",
             icon: <FaFolderOpen />,
             submenu: [
-                { name: "My Projects", link: "/dashboard/projects" },
-                { name: "AI Project Review", link: "/dashboard/projects/ai-review" },
+                { name: "User Actions Logs", link: "/dashboard/auditlogs/user-actions" },
+                { name: "Fraud Logs", link: "/dashboard/auditlogs/fraud-logs" },
             ],
-            roles: ["admin", "undergraduate", "intern", "ase", "se"],
+            roles: ["admin", "user", "developer"],
         },
 
-        {
-            name: "Skills",
-            icon: <FaTools />,
-            submenu: [
-                { name: "Skills", link: "/dashboard/skills" },
-                { name: "Skill Growth Plan", link: "/dashboard/skills/plan" },
-            ],
-            roles: ["admin", "undergraduate", "intern", "ase", "se"],
-        },
-
-        {
-            name: "Roadmap",
-            icon: <FaBullseye />,
-            submenu: [
-                { name: "Step-by-Step Roadmap", link: "/dashboard/roadmap/roadmap" },
-            ],
-            roles: ["admin", "undergraduate", "intern", "ase", "se"],
-        },
-
-        {
-            name: "Articles",
-            icon: <MdArticle />,
-            submenu: [
-                { name: "Articles", link: "/dashboard/articles" },
-                { name: "Saved Articles", link: "/dashboard/articles/saved" },
-            ],
-            roles: ["admin", "undergraduate", "intern", "ase", "se"],
-        },
-
-        {
-            name: "AI Suggestions",
-            icon: <FaRobot />,
-            submenu: [
-                { name: "Ask Anything", link: "/dashboard/ai" },
-            ],
-            roles: ["admin", "undergraduate", "intern", "ase", "se"],
-        },
-
-        {
-            name: "GitHub Insights",
-            icon: <FaGithub />,
-            submenu: [
-                { name: "Repositories", link: "/dashboard/github/repos" },
-                { name: "Search Repo", link: "/dashboard/github/repo-search" },
-                { name: "Coding Patterns", link: "/dashboard/github/patterns" },
-            ],
-            roles: ["admin", "undergraduate", "intern", "ase", "se"],
-        },
-
-        {
-            name: "Mentorship",
-            icon: <FaHandsHelping />,
-            submenu: [
-                { name: "Get Help from Seniors", link: "/dashboard/help/seniors" },
-            ],
-            roles: ["admin", "undergraduate", "intern", "ase", "se"],
-        },
-
-        {
-            name: "Reports",
-            icon: <BiBarChartSquare />,
-            submenu: [
-                { name: "Skill Report", link: "/dashboard/reports/skills" },
-                { name: "Project Report", link: "/dashboard/reports/projects" },
-                { name: "Progress Timeline", link: "/dashboard/reports/timeline" },
-            ],
-            roles: ["admin", "undergraduate", "intern", "ase", "se"],
-        },
-
-        {
-            name: "Admin Panel",
-            icon: <FaUsersCog />,
-            submenu: [
-                { name: "All Users", link: "/dashboard/admin/users" },
-                { name: "User Levels", link: "/dashboard/admin/levels" },
-                { name: "System Logs", link: "/dashboard/admin/logs" },
-            ],
-            roles: ["admin"],
-        },
-
-        {
-            name: "Settings",
-            icon: <FaCog />,
-            submenu: [
-                { name: "Account Settings", link: "/dashboard/settings/account" },
-                { name: "Security Settings", link: "/dashboard/settings/security" },
-            ],
-            roles: ["admin", "undergraduate", "intern", "ase", "se"],
-        },
     ];
 
     const filteredNavItems = navitem.filter((item) =>
@@ -184,7 +95,7 @@ const DashSide = ({ closeSidebar }) => {
                             animate={{ opacity: 1, y: 0 }}
                             className="ml-2 font-bold text-lg text-emerald-700"
                         >
-                            CareerAI
+                            Fraud MFA Project
                         </motion.h1>
                     )}
                 </div>
@@ -343,7 +254,7 @@ const DashSide = ({ closeSidebar }) => {
                 >
                     {!collapsed && (
                         <>
-                            © {new Date().getFullYear()} CareerAI Helper
+                            © {new Date().getFullYear()} Fraud MFA Project
                             <br />
                             <span className="font-semibold text-emerald-600">
                                 Empowering Smart Careers

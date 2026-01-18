@@ -7,6 +7,7 @@ import EnrollMFA from '../pages/AuthPages/EnrollMFA'
 import PrivateRoute from './PrivateRoute'
 import Dashboard from '../layouts/Dashboard'
 import DashHome from '../pages/Dashboard/DashHome'
+import DashError from '../component/Dashboard/DashError'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                 </Route>
 
                 <Route path='/dashboard' element={<PrivateRoute roles={['admin', 'developer', 'user']} ><Dashboard /></PrivateRoute>}>
+                    <Route path='*' element={<PrivateRoute roles={['admin', 'developer', 'user']} ><DashError /></PrivateRoute>} />
                     <Route index element={<PrivateRoute roles={['admin', 'developer', 'user']} ><DashHome /></PrivateRoute>} />
                 </Route>                
 
