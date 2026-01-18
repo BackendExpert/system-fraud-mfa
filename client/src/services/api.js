@@ -3,7 +3,10 @@ import { getDeviceId } from "../utils/deviceId";
 
 const API = axios.create({
     baseURL: import.meta.env.VITE_APP_API,
-    withCredentials: true
+    withCredentials: true,
+    headers: {
+        "Content-Type": "application/json"
+    }
 });
 
 API.interceptors.request.use(

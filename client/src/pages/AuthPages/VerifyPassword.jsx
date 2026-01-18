@@ -11,21 +11,29 @@ const VerfiyPassword = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [toast, setToast] = useState(null);
-    const login = useAuth()
+    const { login } = useAuth();
     const { values, handleChange } = useForm({ otp: '' });
-    const otpToken = localStorage.getItem('otptoken');
-
+    const [otpToken, setOtpToken] = useState(null);
 
     useEffect(() => {
-        if (!otpToken) {
+        const token = localStorage.getItem('otptoken');
+        if (!token) {
             navigate("/", { replace: true });
+            return;
         }
-    }, [otpToken, navigate]);
-
+        setOtpToken(token);
+    }, [navigate]);
 
     const handleVerifyOTP = async (e) => {
         e.preventDefault();
         setLoading(true);
+
+        if (!otpToken) {
+            setToast({ success: false, message: "OTP token expired. Please login again." });
+            setTimeout(() => navigate("/", { replace: true }), 1500);
+            setLoading(false);
+            return;
+        }
 
         try {
             const res = await API.post(
@@ -38,20 +46,19 @@ const VerfiyPassword = () => {
                 }
             );
 
-
             if (res.data.mfaRequired === true) {
                 localStorage.setItem("mfaToken", res.data.token);
+                localStorage.removeItem("otptoken"); // clear old OTP immediately
                 setToast({ success: true, message: "Please verify MFA" });
                 setTimeout(() => navigate('/enroll-mfa'), 2000);
                 return;
             }
 
-
             if (res.data.success) {
-                login(res.data.token)       
+                login(res.data.token);
+                localStorage.removeItem("otptoken"); // remove OTP after successful login
                 setToast({ success: true, message: res.data.message });
-                setTimeout(() => navigate('/dashboard'), 2000);                
-                localStorage.removeItem("otptoken");
+                setTimeout(() => navigate('/dashboard'), 2000);
             }
 
         } catch (err) {
@@ -77,8 +84,6 @@ const VerfiyPassword = () => {
             )}
 
             <div className="w-full max-w-sm bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-8">
-
-                {/* Header */}
                 <div className="text-center mb-8">
                     <div className="mx-auto mb-4 flex items-center justify-center w-14 h-14 rounded-full bg-blue-500/10 text-blue-400 text-xl">
                         🔑
@@ -91,7 +96,6 @@ const VerfiyPassword = () => {
                     </p>
                 </div>
 
-                {/* Form */}
                 <form method="post" onSubmit={handleVerifyOTP} className="space-y-6">
                     <DefaultInput
                         type="text"
