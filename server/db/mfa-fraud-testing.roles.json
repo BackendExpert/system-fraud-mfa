@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "6837b60b735077d2866f126b"
+  },
+  "name": "admin",
+  "permissions": [
+    "role:readall",
+    "role:readone",
+    "role:create",
+    "role:update",
+    "systemusers:manage",
+    "systemusers:create",
+    "systemusers:update",
+    "permission:manage",
+    "permission:create",
+    "permission:update",
+    "permission:delete",
+    "role:getone",
+    "role:delete",
+    "user:get-all",
+    "user:update-role",
+    "user:get-user-logs",
+    "user:get-one-user-log"
+  ],
+  "createdAt": {
+    "$date": "2025-05-29T01:19:07.542Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-12T21:56:01.413Z"
+  },
+  "__v": 45
+},
+{
+  "_id": {
+    "$oid": "6837b616735077d2866f126e"
+  },
+  "name": "developer",
+  "permissions": [],
+  "createdAt": {
+    "$date": "2025-05-29T01:19:18.585Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-01T05:24:56.763Z"
+  },
+  "__v": 38
+},
+{
+  "_id": {
+    "$oid": "68439748ea08c312b1a7d4ec"
+  },
+  "name": "user",
+  "permissions": [],
+  "createdAt": {
+    "$date": "2025-06-07T01:35:04.435Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-12T21:56:05.747Z"
+  },
+  "__v": 12
+}]
