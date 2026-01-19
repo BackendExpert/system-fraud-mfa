@@ -19,6 +19,8 @@ const ActivityController = {
             const token = req.header("Authorization")?.replace("Bearer ", "");
             if (!token) return res.status(401).json({ message: "Access denied" });
 
+            const actId = req.params.id
+
             const result = await ActivityService.getOneUserActivity(actId)
 
             res.status(200).json(result)
@@ -46,6 +48,8 @@ const ActivityController = {
         try {
             const token = req.header("Authorization")?.replace("Bearer ", "");
             if (!token) return res.status(401).json({ message: "Access denied" });
+
+            const fraudLogID = req.params.id
 
             const result = await ActivityService.getOneFraudLog(fraudLogID)
 
