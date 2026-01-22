@@ -8,6 +8,7 @@ import PrivateRoute from './PrivateRoute'
 import Dashboard from '../layouts/Dashboard'
 import DashHome from '../pages/Dashboard/DashHome'
 import DashError from '../component/Dashboard/DashError'
+import FraudLogs from '../pages/Dashboard/pages/UserLogs/FraudLogs'
 
 
 function App() {
@@ -22,9 +23,11 @@ function App() {
                     <Route path='/enroll-mfa' element={<EnrollMFA /> } />
                 </Route>
 
-                <Route path='/dashboard' element={<PrivateRoute roles={['admin', 'developer', 'user']} ><Dashboard /></PrivateRoute>}>
+                <Route path='/dashboard/' element={<PrivateRoute roles={['admin', 'developer', 'user']} ><Dashboard /></PrivateRoute>}>
                     <Route path='*' element={<PrivateRoute roles={['admin', 'developer', 'user']} ><DashError /></PrivateRoute>} />
                     <Route index element={<PrivateRoute roles={['admin', 'developer', 'user']} ><DashHome /></PrivateRoute>} />
+
+                    <Route path='auditlogs/fraud-logs' element={<PrivateRoute roles={['admin']} ><FraudLogs /></PrivateRoute>} />
                 </Route>                
 
             </Routes>

@@ -52,24 +52,6 @@ const DashSide = ({ closeSidebar }) => {
         item.roles.includes(auth?.role)
     );
 
-    const [memberdata, setmemberdata] = useState([])
-
-    useEffect(() => {
-        const fetchmemberdata = async () => {
-            try {
-                const res = await API.get(`/member/get-member-data?nocache=${Date.now()}`, {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
-
-                setmemberdata(res.data.result);
-            }
-            catch (err) {
-                console.log(err)
-            }
-        }
-
-        if (token) fetchmemberdata()
-    }, [token])
 
 
     return (
@@ -217,11 +199,7 @@ const DashSide = ({ closeSidebar }) => {
                     <div className="px-4 py-4 mt-4 border-t border-emerald-100 bg-gradient-to-r from-emerald-50 to-white">
                         <div className="flex items-center gap-3 mb-3">
                             <img
-                                src={
-                                    memberdata?.profileimage
-                                        ? `${import.meta.env.VITE_APP_API_FILES}/uploads/${memberdata.profileimage}`
-                                        : defultImg
-                                }
+                                src={defultImg}
                                 alt="User"
                                 className="w-10 h-10 rounded-full object-cover shadow-md"
                             />

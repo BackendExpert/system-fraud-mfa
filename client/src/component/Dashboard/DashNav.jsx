@@ -30,25 +30,6 @@ const DashNav = () => {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    const [memberdata, setmemberdata] = useState([])
-
-    useEffect(() => {
-        const fetchmemberdata = async () => {
-            try {
-                const res = await API.get(`/member/get-member-data?nocache=${Date.now()}`, {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
-
-                setmemberdata(res.data.result);
-            }
-            catch (err) {
-                console.log(err)
-            }
-        }
-
-        if (token) fetchmemberdata()
-    }, [token])
-
     return (
         <>
             {/* NAVBAR */}
@@ -111,11 +92,7 @@ const DashNav = () => {
                                 className="w-8 h-8 rounded-full overflow-hidden shadow-sm"
                             >
                                 <img
-                                    src={
-                                        memberdata?.profileimage
-                                            ? `${import.meta.env.VITE_APP_API_FILES}/uploads/${memberdata.profileimage}`
-                                            : defultUser
-                                    }
+                                    src={defultUser}
                                     alt="Profile"
                                     className="w-full h-full object-cover"
                                 />
@@ -134,11 +111,7 @@ const DashNav = () => {
                                     >
                                         <div className="flex items-center gap-3 px-4 pb-3">
                                             <img
-                                                src={
-                                                    memberdata?.profileimage
-                                                        ? `${import.meta.env.VITE_APP_API_FILES}/uploads/${memberdata.profileimage}`
-                                                        : defultUser
-                                                }
+                                                src={defultUser}
                                                 alt="User"
                                                 className="w-10 h-10 rounded-full"
                                             />
