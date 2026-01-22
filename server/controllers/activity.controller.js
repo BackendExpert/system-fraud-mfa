@@ -1,4 +1,7 @@
 const ActivityService = require("../services/activity.service");
+const {
+    ErrorResDTO
+} = require("../dtos/activity.dto")
 
 const ActivityController = {
     getallActivities: async (req, res) => {
@@ -6,7 +9,7 @@ const ActivityController = {
             const token = req.header("Authorization")?.replace("Bearer ", "");
             if (!token) return res.status(401).json({ message: "Access denied" });
 
-            const result = await ActivityService.getUserActivities()
+            const result = await ActivityService.getUserActivities(token)
             res.status(200).json(result)
         }
         catch (err) {
@@ -21,7 +24,7 @@ const ActivityController = {
 
             const actId = req.params.id
 
-            const result = await ActivityService.getOneUserActivity(actId)
+            const result = await ActivityService.getOneUserActivity(token, actId)
 
             res.status(200).json(result)
         }
@@ -35,7 +38,7 @@ const ActivityController = {
             const token = req.header("Authorization")?.replace("Bearer ", "");
             if (!token) return res.status(401).json({ message: "Access denied" });
 
-            const result = await ActivityService.getFraudLogs()
+            const result = await ActivityService.getFraudLogs(token)
 
             res.status(200).json(result)
         }
@@ -51,7 +54,7 @@ const ActivityController = {
 
             const fraudLogID = req.params.id
 
-            const result = await ActivityService.getOneFraudLog(fraudLogID)
+            const result = await ActivityService.getOneFraudLog(token, fraudLogID)
 
             res.status(200).json(result)
         }

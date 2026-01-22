@@ -18,6 +18,7 @@ require("dotenv").config();
 // Example: const authRoute = require("./routes/authRoute");
 
 const authRoute = require("./routes/auth.route")
+const activityRoute = require("./routes/activity.route")
 
 // ---------------------- END of Importing Routes
 
@@ -106,7 +107,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // app.use('/api/auth', authRoute)
 
 app.use('/api/auth', authRoute)
-
+app.use('/api/activity', activityRoute)
 
 // -------------- END routes-----------------------
 

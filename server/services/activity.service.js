@@ -1,6 +1,7 @@
 const UserLogs = require("../models/userlog.model")
 const User = require("../models/user.model")
 const Fraudaudit = require("../models/fraudaudit.model")
+const jwt = require("jsonwebtoken")
 
 class ActivityService {
     static async getUserActivities(token) {
