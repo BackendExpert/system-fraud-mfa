@@ -9,10 +9,11 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import defultUser from "../../assets/user.png";
 import { useAuth } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API from "../../services/api";
 
 const DashNav = () => {
+    const navigate = useNavigate()
     const { auth, logout } = useAuth();
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [showMobileSearch, setShowMobileSearch] = useState(false);
@@ -141,7 +142,7 @@ const DashNav = () => {
                                             </li>
                                             <li>
                                                 <button
-                                                    onClick={logout}
+                                                    onClick={() => logout(navigate)}
                                                     className="w-full text-left px-4 py-2 text-red-500 hover:bg-gray-50"
                                                 >
                                                     Logout
