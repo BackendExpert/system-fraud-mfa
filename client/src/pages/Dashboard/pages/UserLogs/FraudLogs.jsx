@@ -177,6 +177,9 @@ const FraudLogs = () => {
                                 <span className="font-semibold">Device:</span> {log.deviceId}
                             </span>
                         </div>
+                        <div className="">
+                            { new Date(log.createdAt).toLocaleDateString() }
+                        </div>
 
                         <hr className="my-3 border-slate-200" />
 

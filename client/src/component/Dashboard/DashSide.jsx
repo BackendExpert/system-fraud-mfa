@@ -40,7 +40,7 @@ const DashSide = ({ closeSidebar }) => {
             name: "Audit logs",
             icon: <FaFolderOpen />,
             submenu: [
-                { name: "User Actions Logs", link: "/dashboard/auditlogs/user-actions" },
+                { name: "User Actions Logs", link: "/dashboard/auditlogs/user-logs" },
                 { name: "Fraud Logs", link: "/dashboard/auditlogs/fraud-logs" },
             ],
             roles: ["admin", "user", "developer"],

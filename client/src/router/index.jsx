@@ -9,6 +9,7 @@ import Dashboard from '../layouts/Dashboard'
 import DashHome from '../pages/Dashboard/DashHome'
 import DashError from '../component/Dashboard/DashError'
 import FraudLogs from '../pages/Dashboard/pages/UserLogs/FraudLogs'
+import Userlogs from '../pages/Dashboard/pages/UserLogs/Userlogs'
 
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
                     <Route index element={<PrivateRoute roles={['admin', 'developer', 'user']} ><DashHome /></PrivateRoute>} />
 
                     <Route path='auditlogs/fraud-logs' element={<PrivateRoute roles={['admin']} ><FraudLogs /></PrivateRoute>} />
+                    <Route path='auditlogs/user-logs' element={<PrivateRoute roles={['admin']} ><Userlogs /></PrivateRoute>} />
+                    
                 </Route>                
 
             </Routes>
